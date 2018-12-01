@@ -15,6 +15,7 @@
 		61A0AFAD21AF87CD00C30E0B /* ConcentrationThemeChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A0AFAC21AF87CD00C30E0B /* ConcentrationThemeChooserViewController.swift */; };
 		61ABF1BC21A90D6100671408 /* Concentration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61ABF1BB21A90D6100671408 /* Concentration.swift */; };
 		61ABF1BE21A90F1E00671408 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61ABF1BD21A90F1E00671408 /* Card.swift */; };
+		61DCDF2521B2F303006CD74B /* VCLLoggingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DCDF2421B2F303006CD74B /* VCLLoggingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		61A0AFAC21AF87CD00C30E0B /* ConcentrationThemeChooserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcentrationThemeChooserViewController.swift; sourceTree = "<group>"; };
 		61ABF1BB21A90D6100671408 /* Concentration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concentration.swift; sourceTree = "<group>"; };
 		61ABF1BD21A90F1E00671408 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		61DCDF2421B2F303006CD74B /* VCLLoggingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCLLoggingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				610EBF6B21A3C0B500D94D86 /* ConcentrationViewController.swift */,
 				610EBF6D21A3C0B500D94D86 /* Main.storyboard */,
 				61A0AFAC21AF87CD00C30E0B /* ConcentrationThemeChooserViewController.swift */,
+				61DCDF2421B2F303006CD74B /* VCLLoggingViewController.swift */,
 				610EBF7521A3C0B900D94D86 /* Info.plist */,
 			);
 			path = Concentration;
@@ -152,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61DCDF2521B2F303006CD74B /* VCLLoggingViewController.swift in Sources */,
 				61A0AFAD21AF87CD00C30E0B /* ConcentrationThemeChooserViewController.swift in Sources */,
 				610EBF6C21A3C0B500D94D86 /* ConcentrationViewController.swift in Sources */,
 				610EBF6A21A3C0B500D94D86 /* AppDelegate.swift in Sources */,
