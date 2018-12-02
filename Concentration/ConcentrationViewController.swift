@@ -8,16 +8,16 @@
 
 import UIKit
 
-class ConcentrationViewController: VCLLoggingViewController {
+class ConcentrationViewController: UIViewController {
     
-    override var vclLoggingName: String {
-        return "Game"
-    }
+//    override var vclLoggingName: String {
+//        return "Game"
+//    }
     
     private lazy var game = Concentration(numberOfPairOfCards: numberOfPairOfCards)
     
     var numberOfPairOfCards: Int {
-        return (cardButtons.count + 1) / 2
+        return (visibleCardButtons.count + 1) / 2
     }
     private(set) var flipCount = 0 {
         didSet {
@@ -33,20 +33,27 @@ class ConcentrationViewController: VCLLoggingViewController {
     
     @IBOutlet private var cardButtons: [UIButton]!
     
+    private var visibleCardButtons: [UIButton]! {
+        return cardButtons?.filter { !$0.superview!.isHidden }
+    }
+    
     @IBAction private func touchCard(_ sender: UIButton) {
         flipCount += 1
-        if let cardNumber = cardButtons.index(of: sender) {
+        if let cardNumber = visibleCardButtons.index(of: sender) {
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
-        } else {
-            print("chosen card was not in cardButton")
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateViewFromModel()
     }
     
     @IBAction private func startOver(_ sender: UIButton) {
         flipCount = 0
-        for index in cardButtons.indices {
-            let button = cardButtons[index]
+        for index in visibleCardButtons.indices {
+            let button = visibleCardButtons[index]
             button.setTitle("", for: .normal)
             button.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
         }
@@ -55,12 +62,14 @@ class ConcentrationViewController: VCLLoggingViewController {
     }
     
     private func updateViewFromModel() {
-        if cardButtons != nil {
-            for index in cardButtons.indices {
-                let button = cardButtons[index]
+        if visibleCardButtons != nil {
+            for index in visibleCardButtons.indices {
+                let button = visibleCardButtons[index]
                 let card = game.cards[index]
                 
                 if card.isFaceUp {
+                    print(button)
+                    print(card)
                     button.setTitle(emoji(for: card), for: .normal)
                     button.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
                 } else {
@@ -76,8 +85,17 @@ class ConcentrationViewController: VCLLoggingViewController {
             .strokeWidth: 5.0,
             .strokeColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         ]
-        let attributedString = NSAttributedString(string: "Flips: \(flipCount)", attributes: attributes)
+        let isCompact = traitCollection.verticalSizeClass == .compact
+        let attributedString = NSAttributedString(
+            string: isCompact ? "Flips\n\(flipCount)" : "Flips: \(flipCount)",
+            attributes: attributes
+        )
         flipCountLabel.attributedText = attributedString
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        updateFlipCountLabel()
     }
     
     var theme: String? {
